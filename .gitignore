@@ -23,14 +23,6 @@ bspwm/rices/**/walls/*.webp
 # ===== Optional personal / machine-specific =====
 kitty/current-theme.conf
 nvim/lazy-lock.json
-bspwm/config/.first_run_done
-bspwm/config/.launcher
-bspwm/config/.sys
-bspwm/config/.term
-bspwm/config/FirstMessage.txt
-bspwm/config/assets/fallback.webp
-bspwm/config/assets/profile.png
-bspwm/config/assets/mute.png
 
 # ===== System / desktop =====
 gtk-3.0/bookmarks

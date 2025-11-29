@@ -1,0 +1,25 @@
+[Default Applications]
+x-scheme-handler/http=userapp-Waterfox-KKVHG3.desktop
+x-scheme-handler/https=userapp-Waterfox-KKVHG3.desktop
+x-scheme-handler/chrome=userapp-Waterfox-KKVHG3.desktop
+text/html=userapp-Waterfox-KKVHG3.desktop
+application/x-extension-htm=userapp-Waterfox-KKVHG3.desktop
+application/x-extension-html=userapp-Waterfox-KKVHG3.desktop
+application/x-extension-shtml=userapp-Waterfox-KKVHG3.desktop
+application/xhtml+xml=userapp-Waterfox-KKVHG3.desktop
+application/x-extension-xhtml=userapp-Waterfox-KKVHG3.desktop
+application/x-extension-xht=userapp-Waterfox-KKVHG3.desktop
+x-scheme-handler/tg=userapp-Kotatogram Desktop-FXQQG3.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Waterfox-KKVHG3.desktop;
+x-scheme-handler/https=userapp-Waterfox-KKVHG3.desktop;
+x-scheme-handler/chrome=userapp-Waterfox-KKVHG3.desktop;
+text/html=userapp-Waterfox-KKVHG3.desktop;
+application/x-extension-htm=userapp-Waterfox-KKVHG3.desktop;
+application/x-extension-html=userapp-Waterfox-KKVHG3.desktop;
+application/x-extension-shtml=userapp-Waterfox-KKVHG3.desktop;
+application/xhtml+xml=userapp-Waterfox-KKVHG3.desktop;
+application/x-extension-xhtml=userapp-Waterfox-KKVHG3.desktop;
+application/x-extension-xht=userapp-Waterfox-KKVHG3.desktop;
+x-scheme-handler/tg=userapp-Kotatogram Desktop-FXQQG3.desktop;

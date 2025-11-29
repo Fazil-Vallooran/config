@@ -1,0 +1,85 @@
+
+# ===== Sensitive / Private =====
+discord/
+github-copilot/
+go/telemetry/local/
+ibus/
+pulse/
+
+# ===== Shell history / completions =====
+zsh/zcompdump*
+zsh/zhistory
+
+# ===== Logs / DB / temporary =====
+mpd/log
+mpd/mpd.db
+mpd/mpdstate
+ncmpcpp/error.log
+
+# ===== Large media / wallpapers / videos =====
+bspwm/config/assets/*.mp4
+bspwm/rices/**/walls/*.webp
+
+# ===== Optional personal / machine-specific =====
+kitty/current-theme.conf
+nvim/lazy-lock.json
+bspwm/config/.first_run_done
+bspwm/config/.launcher
+bspwm/config/.sys
+bspwm/config/.term
+bspwm/config/FirstMessage.txt
+bspwm/config/assets/fallback.webp
+bspwm/config/assets/profile.png
+bspwm/config/assets/mute.png
+
+# ===== System / desktop =====
+gtk-3.0/bookmarks
+gtk-3.0/settings.ini
+user-dirs.dirs
+user-dirs.locale
+
+# ===== Other =====
+*.swp
+*.swo
+# Ignore cache and runtime files
+**/cache/
+**/Cache/
+**/tmp/
+**/Temp/
+**/sessions/
+**/history/
+**/undo/
+**/*.swp
+**/*.swo
+
+# Ignore application-specific sensitive data
+discord/
+Electron/
+evolution/
+pulse/
+.ibus/
+.github-copilot/
+dconf/
+.ICEauthority
+.Xauthority
+
+# Ignore compiled files or backups
+**/*.pyc
+**/*.o
+**/*.so
+**/*~
+**/*.bak
+**/nvim_backup/
+
+# Ignore system files
+*.DS_Store
+*.desktop
+# Ignore secrets
+*.key
+*.pem
+*.env
+
+# Ignore runtime/cache
+.cache/
+.local/share/nvim/swap/
+.local/share/nvim/undo/

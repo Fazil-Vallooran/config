@@ -1,0 +1,93 @@
+#!/bin/sh
+# =============================================================
+# Author:  gh0stzk
+# Repo:    https://github.com/gh0stzk/dotfiles
+# Date:    21.11.2025
+#
+# SetSysVars - Automated System Configuration for BSPWM
+# Features:
+#   ✔ Sets up variables for Polybar integration.
+#      * Sets up network interfaces
+#      * Sets up graphics card
+#      * Sets up power supply
+#   ✔ Creates a lock file after first execution
+# Dependencies:
+#   → Core: awk, grep, sed, iproute2 (All in Arch base)
+#
+# Copyright (C) 2021-2025 gh0stzk <z0mbi3.zk@protonmail.com>
+# Licensed under GPL-3.0 license
+# =============================================================
+
+CONFIG_FILE="$HOME/.config/bspwm/config/system.ini"
+SFILE="$HOME/.config/bspwm/config/.sys"
+
+[ -f "$SFILE" ] && exit 0 # The file exists, exit without doing anything
+
+wait_for_interface() {
+    while :; do
+        iface=$(ip link | awk '/state UP/ {gsub(":", "", $2); print $2; exit}')
+        [ -n "$iface" ] && { printf "%s" "$iface"; return; }
+        sleep 0.3
+    done
+}
+
+wait_for_internet() {
+    while ! curl -fsS --max-time 3 https://google.com >/dev/null 2>&1; do
+        sleep 0.3
+    done
+}
+
+detect_graphics() {
+    for entry in /sys/class/backlight/*; do
+        [ -d "$entry" ] || continue
+        printf "%s" "$(basename "$entry")"
+        return
+    done
+}
+
+detect_battery() {
+    for entry in /sys/class/power_supply/*; do
+        entry_name=$(basename "$entry")
+        case "$entry_name" in
+            *BAT*) printf "%s" "$entry_name"; return ;;
+        esac
+    done
+}
+
+detect_adapter() {
+    for entry in /sys/class/power_supply/*; do
+        entry_name=$(basename "$entry")
+        case "$entry_name" in
+            *AC*|*ADP*) printf "%s" "$entry_name"; return ;;
+        esac
+    done
+}
+
+setup_system_vars() {
+    card=$(detect_graphics)
+    battery=$(detect_battery)
+    adapter=$(detect_adapter)
+
+    # Step 1: Wait for the physical/virtual UP interface
+    primary_net=$(wait_for_interface)
+
+    # Step 2: Adjust to the actual output interface
+    wait_for_internet
+    route_if=$(ip route 2>/dev/null | awk '/default/ {print $5; exit}')
+    [ -n "$route_if" ] && primary_net="$route_if"
+
+    tmpfile=$(mktemp)
+    awk -v net="$primary_net" \
+        -v card="$card" \
+        -v bat="$battery" \
+        -v adap="$adapter" '
+        /^sys_network_interface =/ {$0="sys_network_interface = " net}
+        /^sys_graphics_card =/ {$0="sys_graphics_card = " card}
+        /^sys_battery =/ {$0="sys_battery = " bat}
+        /^sys_adapter =/ {$0="sys_adapter = " adap}
+        {print}
+    ' "$CONFIG_FILE" > "$tmpfile" && mv "$tmpfile" "$CONFIG_FILE"
+}
+
+setup_system_vars
+touch "$SFILE"

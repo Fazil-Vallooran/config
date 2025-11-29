@@ -23,3 +23,4 @@ application/xhtml+xml=userapp-Waterfox-KKVHG3.desktop;
 application/x-extension-xhtml=userapp-Waterfox-KKVHG3.desktop;
 application/x-extension-xht=userapp-Waterfox-KKVHG3.desktop;
 x-scheme-handler/tg=userapp-Kotatogram Desktop-FXQQG3.desktop;
+text/x-lua=nvim.desktop;
